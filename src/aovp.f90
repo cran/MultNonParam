@@ -13,7 +13,7 @@ implicit none
      end do
      allocate(cntgrp(ngrp))
      tot=1.0d0
-!     write(6,*) "About to cycle through blocks"
+!    write(6,*) "About to cycle through blocks"
      do i=1,nb
         if(i.eq.1) start=1
         if(i.gt.1) start=be(i-1)+1
@@ -57,22 +57,22 @@ implicit none
    double precision x(nx),means(ngrp),gm
    integer jj
    do jj=1,ngrp
-	  means(jj)=0.0d0
-	  used(jj)=0
+          means(jj)=0.0d0
+          used(jj)=0
    end do
    do jj=1,nx
-	  means(grp(jj))=means(grp(jj))+x(jj)
-	  used(grp(jj))=used(grp(jj))+1
+          means(grp(jj))=means(grp(jj))+x(jj)
+          used(grp(jj))=used(grp(jj))+1
    end do
 !  write(6,*) "Mark a, ngrp=",ngrp
    gm=0.0d0
    do jj=1,ngrp
-	  gm=gm+means(jj)
-	  if(used(jj).gt.0) then
-		 means(jj)=means(jj)/used(jj)
-	  else
+      gm=gm+means(jj)
+      if(used(jj).gt.0) then
+         means(jj)=means(jj)/used(jj)
+      else
 !        write(6,*) "Empty group"
-	  end if
+      end if
    end do
 !  write(6,*) "Mark a"
    gm=gm/nx
@@ -90,35 +90,35 @@ implicit none
 !   write(fmt(9:10),'(i2)') ngrp
 !   write(6,fmt) "group means",(means(jj),jj=1,ngrp)
 !   if(nb.gt.1) then
-!	  write(fmt(9:10),'(i2)') nb
-!	  write(6,fmt) "block means",(blkmn(jj),jj=1,nb)
+!      write(fmt(9:10),'(i2)') nb
+!      write(6,fmt) "block means",(blkmn(jj),jj=1,nb)
 !    end if
 !    df(1)=ngrp-1
 !    df(2)=nx-1-(ngrp-1)-(nb-1)
-!	 df(3)=nx-1
+!      df(3)=nx-1
 !   write(6,'(a10,1x,f9.4,1x,a1,1x,f9.4)') "grand mean",gm,"f",aov
 !   write(6,'(a47)') "source  df sum of squares   mean squares  f"
-!	   write(6,'(a5,1x,i5,3(1x,f12.4))') "model",df(1),bss,bss/df(1),aov
-!	   write(6,'(a5,1x,i5,3(1x,f12.4))') "error",df(2),ess,ess/df(2)
-!	   write(6,'(a5,1x,i5,3(1x,f12.4))') "total",df(3),bss+ess
-!    return
-!    end
+!      write(6,'(a5,1x,i5,3(1x,f12.4))') "model",df(1),bss,bss/df(1),aov
+!      write(6,'(a5,1x,i5,3(1x,f12.4))') "error",df(2),ess,ess/df(2)
+!      write(6,'(a5,1x,i5,3(1x,f12.4))') "total",df(3),bss+ess
+!   return
+!   end
 
    
    subroutine chkgrps(ngrp,first,nx,grp)
    integer ngrp,nx,grp(nx)
    logical first
    if(ngrp.le.0) then
-	  first=.true.
+      first=.true.
 !     write(6,*) "Ping"
-	  ngrp=0
-	  do jj=1,nx
-!		 if(grp(jj).le.0) write(6,*) "Bad group"
-		 ngrp=max(ngrp,grp(jj))
-	  end do
+      ngrp=0
+      do jj=1,nx
+!        if(grp(jj).le.0) write(6,*) "Bad group"
+         ngrp=max(ngrp,grp(jj))
+      end do
 !     write(6,*) "Ping"
    else
-	  first=.false.
+      first=.false.
    end if
    return
    end
@@ -175,7 +175,8 @@ implicit none
 implicit none
    integer nx
    integer grp(nx)
-   double precision x(nx),tss,ess,gm,temp(1),bss
+   double precision x(nx),tss,ess,gm,bss
+!  double precision temp(1)
    integer ngrp,jj
    integer,dimension(:),allocatable,save::used
    double precision,dimension(:),allocatable::means
@@ -186,13 +187,13 @@ implicit none
    tss=0.0d0
    ess=0.0d0
    do jj=1,nx
-	  ess=ess+(x(jj)-means(grp(jj)))**2
-	  tss=tss+(x(jj)-gm)**2
+      ess=ess+(x(jj)-means(grp(jj)))**2
+      tss=tss+(x(jj)-gm)**2
    end do
 !  write(6,*) "Mark a"
    bss=tss-ess
    aov=(bss/(ngrp-1))/(ess/(nx-ngrp))
-!   if(first) call writeanova(means,temp,gm,ngrp,bss,ess,nx,aov,1)
+!  if(first) call writeanova(means,temp,gm,ngrp,bss,ess,nx,aov,1)
    deallocate(means,used)
    return
    end
@@ -250,14 +251,7 @@ implicit none
      return
      end
      
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 subroutine nextb(perm,n,nb,be,first)
+     subroutine nextb(perm,n,nb,be,first)
 implicit none
      integer be(nb),nb
      integer n,perm(n)
@@ -305,13 +299,6 @@ implicit none
      return
      end
 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
      subroutine aovp(n,grpi,nb,be,x,tot,pv)
 implicit none
 ! Perform permutation analysis of variance.  
@@ -324,6 +311,8 @@ implicit none
      double precision x(n),aovn,aov,aov2,aovo,tot,remt,pv
      character*20 fmt
      logical first
+! Next line stops uninitialized warning.
+     aovn=0.0d0
      fmt='(a2,i3,a5,  i3,f9.4)'
 !    write(fmt(11:12),'(i2)') n
      ngrp=0
@@ -364,10 +353,7 @@ implicit none
      return
      end
 
-	 
-	 
-	 
-	 subroutine betatest(n,x,y,pval)
+     subroutine betatest(n,x,y,pval)
 implicit none
      integer (kind=8) count(2),npprt
      integer,allocatable,dimension(:)::perm,be
@@ -408,7 +394,7 @@ implicit none
      return
      end
      
-	 double precision function cp(n,x,y,perm)
+     double precision function cp(n,x,y,perm)
 implicit none
      integer n,perm(n),i
      double precision x(n),y(n)

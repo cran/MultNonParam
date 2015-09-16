@@ -4,11 +4,11 @@
 \title{Tukey HSD procedure}
 \description{Rank-based method for controlling experiment-wise error. We make the hypothesis of the normality of the distribution for the variable of interest. 
 }
-\usage{tukey.kruskal.test(x, y, alpha=.05)}
+\usage{tukey.kruskal.test(resp, grp, alpha=.05)}
 
 \arguments{
-  \item{x}{vector specifying in which group is each observation.}
-  \item{y}{vector containing the values for the variable of interest.}
+  \item{resp}{vector containing the values for the variable of interest.}
+  \item{grp}{vector specifying in which group is each observation.}
   \item{alpha}{level of the test.}
   }
 

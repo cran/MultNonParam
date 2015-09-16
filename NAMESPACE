@@ -1,1 +1,4 @@
 export(probest, testve, util.jplot, wilding, aov.P, higgins.fisher.kruskal.test, tukey.kruskal.test, betatest, dmannwhitney, sensitivity.plot)
+importFrom("graphics", "abline", "legend", "lines", "plot", "points")
+importFrom("stats", "kruskal.test", "model.matrix", "pnorm", "qqnorm","qtukey", "rnorm")
+importFrom("stats", "fisher.test", "median")
