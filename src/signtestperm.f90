@@ -19,10 +19,15 @@ implicit none
        do while(.not.done)
           kk=-1
           do while(kk.le.0)
-             if(index(-kk)) then 
-                kk=kk-1
+!            write(6,*) "kk",kk,(index(ii),ii=1,n)
+             if(kk.ge.(-n)) then
+                if(index(-kk)) then 
+                   kk=kk-1
+                else
+                   kk=-kk
+                end if
              else
-                kk=-kk
+                kk=n+1
              end if
           end do 
           if(kk.gt.n) then
@@ -42,6 +47,7 @@ implicit none
        return
        end
        double precision function signtestone(index,s,n)
+implicit none
        integer n,ii
        double precision s(n)
        logical index(n)

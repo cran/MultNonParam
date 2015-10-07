@@ -1,4 +1,5 @@
        program testperm
+implicit none
        integer n,out
        double precision,allocatable,dimension(:):: y,s
        n=5
@@ -11,5 +12,6 @@
        do out=1,n
           s(out)=out
        end do
-       call signtestperm(y,s,n,out)
+       call signtestperm(y,s,n,out)  
+       write(6,*) out*2.0**(-n)
        end

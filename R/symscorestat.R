@@ -7,7 +7,7 @@ symscorestat<-function(y,scores=NULL,exact=F,sides=1){
       pvo<-out*2^(-length(y))
    }else{
       zstat<- -(sum(scores[y>0])-sum(scores)/2)/
-         sqrt(sum((scores-mean(scores))^2)/4)
+         sqrt(sum(scores^2)/4)
       pvo<-pnorm(-zstat)
    }
    if(sides==2) pvo<-2*min(pvo,1-pvo)

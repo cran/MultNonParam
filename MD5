@@ -1,15 +1,16 @@
-dc5e06517716aca5a64b9696990629db *DESCRIPTION
+9e339b22da8fcf74c2c7266f09a403d3 *DESCRIPTION
 65a866f3b3f6b70f45b70fc34e097633 *NAMESPACE
 262ed1f3da6cad19f93017d4d42f5497 *R/aov.P.R
 9199aea5db0ecad9d87187e55e113e45 *R/functions.R
 5bf2bbf752eac2d7e4073217c00381de *R/higgins.fisher.kruskal.test.R
 2b412cf6c1d743dd062b4b21bffa2234 *R/mood.median.test.R
-1586c1b813205579899f778571316784 *R/symscorestat.R
+c1ec54d2fa9d9e2ebe734d27362b4940 *R/symscorestat.R
 cb6586529afcaa50eb6271dda6783bea *R/tukey.kruskal.test.R
 0b214c0fb8e864fd893deff88eca4bfc *R/zzz.r
 e8a563ca2f88a817fa4c9cf1738e118a *data/prostate.data.txt.gz
 e06d08bc76bdf515f23957b7bda975c5 *data/sotiriou.data.txt.gz
-96bee9578c987e8f8cddce41f4f2ef62 *inst/testperm.f90
+e970b8ad6f8a93dcd3a52dbcc7703773 *inst/Makefile
+b4b83a3796632955040c0a2ad88ccf82 *inst/testperm.f90
 3b63768471e8b460bf1f0eceabf6c786 *man/MultNonParam-package.Rd
 97880a5749e67e483845ced955621cde *man/aov.P.Rd
 79454766ad771d3a597e365ef183a8be *man/betatest.Rd
@@ -28,4 +29,4 @@ fc3057e0081845173529780fe097a15d *man/util.jplot.Rd
 c71aaaf50c1389d45c994eda1f8c9443 *src/aovp.f90
 57bf4303d0e83c7af6178f2e6ad1a607 *src/dwildings.f90
 905967303031c28bddb3bdf29fae02fd *src/probest.f90
-9675cbd3e829bcd865f2353ed44f554c *src/signtestperm.f90
+cd47709f9581749f01d7f963cf609cde *src/signtestperm.f90
