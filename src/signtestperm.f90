@@ -1,16 +1,19 @@
-       subroutine signtestperm(y,s,n,out)
+       subroutine signtestperm(y,s,n,out,verbose)
 implicit none
        integer n
        double precision y(n),s(n),signtestone
-       integer ii,kk,out
-       logical index(n)
+       logical verbose
+       character star(1)
+       integer ii,kk,out,marka,markb
+       logical,dimension(:),allocatable::index
        logical done
        double precision testobs,testnew
+       allocate(index(n))
        do ii=1,n
           index(ii)=(y(ii).gt.0.0d0)
 !         write(6,*) "index(ii)",index(ii),"y(ii)",y(ii)
        end do!ii
-       testobs=signtestone(index,s,n)
+       testobs=signtestone(index,s,n,marka)
        do ii=1,n
           index(ii)=.False.
        end do!ii
@@ -39,21 +42,29 @@ implicit none
              index(kk)=.True.
           end if
           if(.not.done) then
-             testnew=signtestone(index,s,n)
+             testnew=signtestone(index,s,n,markb)
              if(testnew.ge.testobs) out=out+1
-!            write(6,*) (index(ii),ii=1,n),testnew,testobs,out
+             star=" "
+             if(marka.eq.markb) star="*"
+!            if(verbose) write(6,*) (index(ii),ii=1,n),testnew,testobs,out,star
           end if
        end do
+       deallocate(index)
        return
        end
-       double precision function signtestone(index,s,n)
+       double precision function signtestone(index,s,n,mark)
 implicit none
-       integer n,ii
+       integer n,ii,mark
        double precision s(n)
        logical index(n)
        signtestone=0.0d0
+       mark=0
        do ii=1,n
-          if(index(ii)) signtestone=signtestone+s(ii)
+          mark=2*mark
+          if(index(ii)) then
+             mark=mark+1
+             signtestone=signtestone+s(ii)
+          end if
        end do!ii
        return
        end

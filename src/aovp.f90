@@ -1,6 +1,7 @@
      subroutine cntperms(perm,n,nb,be,tot)
 implicit none
-     integer be(nb),nb
+     integer nb
+     integer be(nb)
      integer n,perm(n)
      integer i,j,start,ngrp
      integer,dimension(:),allocatable::cntgrp

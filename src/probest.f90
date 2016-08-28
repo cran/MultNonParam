@@ -14,6 +14,7 @@ implicit none
    allocate(u1(N,N,r),ut1(N,N,M),ut2(N,N),u2(N,N,r),tt(N),vv(N))
    allocate(su(2,N,r),sut1(N,M),sut2(N),G(N,2*r+M+1))
    do ii=1,N
+!     write(6,*) "ym",(ym(ii,jj),jj=1,r),grpv(ii),strv(ii),(zmat(ii,jj),jj=1,r)
       if(grpv(ii).eq.gn(2)) then
          tt(ii)=1
       else 
@@ -84,6 +85,7 @@ implicit none
          G(ii,kk+r+M)=su(2,ii,kk)
       end do!kk
       G(ii,2*r+M+1)=sut2(ii)
+!     write(6,*) "G",(G(ii,jj),jj=1,2*r+M+1)
    end do!ii
 !  write(6,*) "sut2",(sut2(ii),ii=1,N)
    call finish(M,r,G,N,b,Vf11)
@@ -154,25 +156,28 @@ implicit none
 !       write(6,*) (VGbar(ii,jj),jj=1,2*r+M+1)
      end do!ii
      do ii=1,r
-        ff(ii)=Gbar(ii)/Gbar(r+M+ii)
+        if(.not.(ff(ii).eq.0.0d0)) ff(ii)=Gbar(ii)/Gbar(r+M+ii)
      end do!ii
      if(M.gt.0) then
        do ii=1,M
-          ff(ii+r)=Gbar(r+ii)/Gbar(2*r+M+1)
+          if(.not.(ff(ii+r).eq.0.0d0)) ff(ii+r)=Gbar(r+ii)/Gbar(2*r+M+1)
        end do!ii
      end if
      do ii=1,M+r
         do jj=1,2*r+M+1
            H(ii,jj)=0.0d0
         end do!jj
-        H(ii,ii)=ff(ii)/Gbar(ii)
+!       write(6,*) "ff,Gbar",ff(ii),Gbar(ii)
+        if(.not.(Gbar(ii).eq.0.0d0)) H(ii,ii)=ff(ii)/Gbar(ii)
+!       write(6,*) "H(ii,jj)",(H(ii,jj),jj=1,2*r+M+1)
      end do!ii
+!    write(6,*) "Gbar",(Gbar(ii),ii=r+M+1,r*R+2*M)
      do ii=1,r
-        H(ii,r+M+ii)=-ff(ii)/Gbar(r+M+ii)
+        if(.not.(ff(ii).eq.0.0d0)) H(ii,r+M+ii)=-ff(ii)/Gbar(r+M+ii)
      end do!ii
      if(M.gt.0) then
         do ii=1,M
-           H(r+ii,2*r+M+1)=-ff(r+ii)/Gbar(2*r+M+1)
+           if(.not.(ff(r+ii).eq.0.0d0)) H(r+ii,2*r+M+1)=-ff(r+ii)/Gbar(2*r+M+1)
         end do 
      end if
      do ii=1,r
