@@ -1,15 +1,19 @@
-   subroutine probest(r,M,N,grpv,ngrp,gn,strv,ustr,nstr,ym,xm,zmat,delta,b,Vf11)
+   subroutine probest(r,M,N,grpv,ngrp,gn,strv,ustr,nstr,ym,xm,zmat,delta,b,Vf11,correctme)
 implicit none
-   integer r,M,N,grpv(N),strv(N),nstr,ustr(nstr),ngrp,gn(ngrp)
+! Inputs
+! r=number of responses
+! M=number of covariates
+! N=number of observations
+   integer r,M,N,grpv(N),strv(N),nstr,ustr(nstr),ngrp,gn(ngrp),npergp(ngrp)
    double precision ym(N,r),xm(N,M),delta(r),b(r),Vf11(r,r)
    double precision,allocatable,dimension(:,:,:):: su
    double precision,allocatable,dimension(:,:):: sut1,G
    double precision,allocatable,dimension(:):: sut2
-   logical zmat(N,r)
+   logical zmat(N,r),correctme
    double precision,allocatable,dimension(:,:,:)::u1,ut1,u2
    double precision,allocatable,dimension(:,:)::ut2
    integer,dimension(:),allocatable::vv,tt
-   double precision yd
+   double precision yd,truv
    integer ii,kk,hh,sstr,jj,jjp,i1,i2,i3,td,mm,nj,njp,njk,njpk,countn
    allocate(u1(N,N,r),ut1(N,N,M),ut2(N,N),u2(N,N,r),tt(N),vv(N))
    allocate(su(2,N,r),sut1(N,M),sut2(N),G(N,2*r+M+1))
@@ -88,7 +92,8 @@ implicit none
 !     write(6,*) "G",(G(ii,jj),jj=1,2*r+M+1)
    end do!ii
 !  write(6,*) "sut2",(sut2(ii),ii=1,N)
-   call finish(M,r,G,N,b,Vf11)
+   truv=npergp(1)*npergp(2)+(npergp(1)+npergp(2)+1.0d0)/12.0d0
+   call finish(M,r,G,N,b,Vf11,correctme,truv)
    deallocate(u1,ut1,ut2,u2,tt,vv,su,sut1,sut2,G)
    return
    end
@@ -113,6 +118,7 @@ implicit none
    end do
    return
    end
+!###################################################
    integer function countn(N,ij,strv,hh,grpv,zmat,r,kk)
    integer N,strv(N),hh,grpv(N),r,kk,ij
    logical zmat(N,r)
@@ -128,10 +134,39 @@ implicit none
    return
    end
 !##############################################
-     subroutine finish(M,r,G,N,b,Vf11)
+     subroutine correctyou(Vf11,Vf22,Vf21,Vf12,r,M,truv)
+implicit none
+     integer r,M
+     double precision truv
+     double precision Vf11(r,r),Vf21(M,r),Vf22(M,M),Vf12(r,M)
+     integer ii,jj
+     do ii=1,r
+        do jj=1,r
+           if(.not.(ii.eq.jj)) Vf11(ii,jj)=truv*Vf11(ii,jj)/sqrt(Vf11(ii,ii)*Vf11(jj,jj))
+        end do
+     end do
+     if(M.gt.0) then
+        do ii=1,M
+           do jj=1,M
+              if(.not.(ii.eq.jj)) Vf22(ii,jj)=truv*Vf22(ii,jj)/sqrt(Vf22(ii,ii)*Vf22(jj,jj))
+           end do
+        end do
+        do ii=1,r
+           do jj=1,M
+              Vf12(ii,jj)=truv*Vf12(ii,jj)/sqrt(Vf11(ii,ii)*Vf22(jj,jj))
+! Can I just rely on symmetry here?  I can't remember.
+              Vf21(jj,ii)=truv*Vf21(jj,ii)/sqrt(Vf11(ii,ii)*Vf22(jj,jj))
+           end do
+        end do
+     end if
+     return
+     end
+!##############################################
+     subroutine finish(M,r,G,N,b,Vf11,correctme,truv)
 implicit none
      integer M,r,N
-     double precision G(N,2*r+M+1),b(r),Vf11(r,r)
+     logical correctme
+     double precision G(N,2*r+M+1),b(r),Vf11(r,r),truv
      double precision,allocatable,dimension(:)::Gbar,ff
      double precision,allocatable,dimension(:,:)::VGbar,H,Vf22,Vf21,Vf12
      integer,allocatable,dimension(:)::ipiv
@@ -219,6 +254,9 @@ implicit none
            end do
 !          write(6,*) "Vf22",(Vf22(ii-r,jj),jj=1,M)
         end do
+        if(correctme) then
+!          write(6,*) "Correction not done yet."
+        end if
 ! Lapack routine to calculate LU decomposition.  Feeds matrix inversion routine.
         call dgetrf(M,M,Vf22,M,ipiv,ii)
         call dgetrs('N',M,r,Vf22,M,ipiv,Vf21,M,ii)

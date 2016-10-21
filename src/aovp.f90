@@ -40,7 +40,8 @@ implicit none
 
 
    subroutine labelblock(be,nb,blk,nx)
-   integer nb,nx,blk(nx),be(nb),jj,kk,start
+   integer nb
+   integer nx,blk(nx),be(nb),jj,kk,start
    do jj=1,nb
       if(jj.eq.1) start=1
       if(jj.gt.1) start=be(jj-1)+1
@@ -254,7 +255,8 @@ implicit none
      
      subroutine nextb(perm,n,nb,be,first)
 implicit none
-     integer be(nb),nb
+     integer nb
+     integer be(nb)
      integer n,perm(n)
      integer i,j,k,l
      integer,dimension(:),allocatable,save::operm
@@ -306,15 +308,16 @@ implicit none
 ! Permute group memberships, perhaps with blocking.
 ! Report counts of permutations, and those with statistic exceeding
 ! p-value.
-     integer n,ngrp,grpi(n),nb,be(nb),npprt
+     integer nb
+     integer n,ngrp,grpi(n),be(nb),npprt
      integer i
      integer(kind=8) ms(2),rt,cnt(2)
      double precision x(n),aovn,aov,aov2,aovo,tot,remt,pv
-     character*20 fmt
+!    character*20 fmt
      logical first
 ! Next line stops uninitialized warning.
      aovn=0.0d0
-     fmt='(a2,i3,a5,  i3,f9.4)'
+!    fmt='(a2,i3,a5,  i3,f9.4)'
 !    write(fmt(11:12),'(i2)') n
      ngrp=0
 !    write(6,*) "ngrp=",ngrp

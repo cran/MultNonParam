@@ -5,7 +5,7 @@
 \description{
 Function that return the estimators and their variance-covariance matrix calculated with the Kawaguchi - Koch - Wang method.
 }
-\usage{probest(ds, resp, grp, str, covs = NULL, delta = NA)}
+\usage{probest(ds, resp, grp, str = NULL, covs = NULL, delta = NA, correct = FALSE)}
 
 \arguments{
   \item{ds}{The \code{data.frame} to be used.}
@@ -13,7 +13,8 @@ Function that return the estimators and their variance-covariance matrix calcula
   \item{grp}{The vector of the variable that divides the population into groups. It has to be the name of the variable as a character string.}
   \item{str}{The vector of the variable used for the strata. It has to be the name of the variable as a character string.}
   \item{covs}{The covariates to be used in the model. It has to be the name of the variable as a character string. Default value is \code{NULL}}
-  \item{delta}{Default value is \code{NA}.}
+  \item{delta}{Offeset for covariates.  Default value is \code{NA}}
+  \item{correct}{Should the variance estimator be corrected as in Chen and Kolassa?  Default value is \code{FALSE}.}
 }
 
 \details{
