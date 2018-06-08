@@ -30,7 +30,7 @@ implicit none
             tot=tot/gamma(dble(cntgrp(j)+1))
         end do
      end do
-!     write(6,*) tot
+!    write(6,*) tot
      return
      end
 
@@ -202,57 +202,6 @@ implicit none
 
 
    
-        subroutine next(perm,n,b)
-implicit none
-     integer n,perm(n),b
-     integer i,j,k,l,mxperm
-     logical go
-!    write(6,*) "in next n=",n,"b=",b
-!    write(6,*) "in next perm=",(perm(i),i=1,n)
-     go=.TRUE.
-     mxperm=perm(b)
-     do i=b,n
-        mxperm=max(mxperm,perm(i))!I know that I am looking at the first element twice.
-     end do
-     i=n-1
-     do while(go)
-!       write(6,*) "in next i=",i
-        if(i.ge.b) then
-           if(perm(i)<perm(i+1)) go=.FALSE.
-        end if
-        if(i.eq.0) go=.FALSE.
-        if(go) i=i-1
-     end do
-! i is now the index of last entry with the entry above it in ascending order
-     if(i>0) then
-! I think that the next line can be removed
-!       j=n
-        k=mxperm+1
-        l=n+1
-        do j=n,i+1,-1
-           if((perm(j)>perm(i)).and.(perm(j)<k)) then
-              k=perm(j)
-              l=j
-           end if
-        end do
-! l is now the index of the smallest entry after i and greater than perm(i)
-        j=perm(l)
-        perm(l)=perm(i)
-        perm(i)=j
-!       write(6,*) "Swapping entries",i,"and",l
-!       write(6,*) "Intermediate",(perm(j),j=1,n)
-        do j=1,(n-i)/2
-           l=perm(i+j)
-           perm(i+j)=perm(n+1-j)
-           perm(n+1-j)=l
-        end do
-     else
-        n=-n
-     end if
-!    write(6,*) "Before return in next n=",n
-     return
-     end
-     
      subroutine nextb(perm,n,nb,be,first)
 implicit none
      integer nb
@@ -277,7 +226,7 @@ implicit none
         if(l.gt.1) j=be(l-1)+1
         k=be(l)
 !       write(6,*) "Before next l=",l," k=",k,"j=",j,"perm",(perm(i),i=1,n)
-        call next(perm,k,j)
+        call nextp(perm,k,j)
 !       write(6,*) "After next k=",k,"l=",l,"perm",(perm(i),i=1,n)
         if(k.lt.0) then
            if(l.lt.nb) then
@@ -342,7 +291,7 @@ implicit none
         cnt(1)=cnt(1)+1
         if(aovn.ge.aovo) cnt(2)=cnt(2)+1
 !       write(6,*) "About to generate next permutation"
-        if(nb.eq.1) call next(grpi,n,nb)
+        if(nb.eq.1) call nextp(grpi,n,nb)
         if(nb.gt.1) call nextb(grpi,n,nb,be,first)
 !       write(6,*) "Generated next permutation"
         if(i.eq.((i/npprt)*npprt)) then
@@ -357,7 +306,7 @@ implicit none
      return
      end
 
-     subroutine betatest(n,x,y,pval)
+     subroutine betatestf(n,x,y,pval)
 implicit none
      integer (kind=8) count(2),npprt
      integer,allocatable,dimension(:)::perm,be
@@ -390,7 +339,7 @@ implicit none
      do while(n.gt.0)
 !        call projtime(count(2),tot,npprt)
 !       write(6,fmt) "n=",n,"perm=",(perm(i),i=1,abs(n))
-        call next(perm,n,b)
+        call nextp(perm,n,b)
         if(cp(n,x,y,perm).ge.cp0) count(1)=count(1)+1
         count(2)=count(2)+1
      end do

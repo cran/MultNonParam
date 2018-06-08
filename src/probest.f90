@@ -1,4 +1,4 @@
-   subroutine probest(r,M,N,grpv,ngrp,gn,strv,ustr,nstr,ym,xm,zmat,delta,b,Vf11,correctme)
+   subroutine probestf(r,M,N,grpv,ngrp,gn,strv,ustr,nstr,ym,xm,zmat,delta,b,Vf11,correctme)
 implicit none
 ! Inputs
 ! r=number of responses
@@ -191,11 +191,11 @@ implicit none
 !       write(6,*) (VGbar(ii,jj),jj=1,2*r+M+1)
      end do!ii
      do ii=1,r
-        if(.not.(ff(ii).eq.0.0d0)) ff(ii)=Gbar(ii)/Gbar(r+M+ii)
+        ff(ii)=Gbar(ii)/Gbar(r+M+ii)
      end do!ii
      if(M.gt.0) then
        do ii=1,M
-          if(.not.(ff(ii+r).eq.0.0d0)) ff(ii+r)=Gbar(r+ii)/Gbar(2*r+M+1)
+          ff(ii+r)=Gbar(r+ii)/Gbar(2*r+M+1)
        end do!ii
      end if
      do ii=1,M+r
@@ -208,11 +208,11 @@ implicit none
      end do!ii
 !    write(6,*) "Gbar",(Gbar(ii),ii=r+M+1,r*R+2*M)
      do ii=1,r
-        if(.not.(ff(ii).eq.0.0d0)) H(ii,r+M+ii)=-ff(ii)/Gbar(r+M+ii)
+        if(.not.(Gbar(r+M+ii).eq.0.0d0)) H(ii,r+M+ii)=-ff(ii)/Gbar(r+M+ii)
      end do!ii
      if(M.gt.0) then
         do ii=1,M
-           if(.not.(ff(r+ii).eq.0.0d0)) H(r+ii,2*r+M+1)=-ff(r+ii)/Gbar(2*r+M+1)
+           if(.not.(Gbar(2*r+M+1).eq.0.0d0)) H(r+ii,2*r+M+1)=-ff(r+ii)/Gbar(2*r+M+1)
         end do 
      end if
      do ii=1,r

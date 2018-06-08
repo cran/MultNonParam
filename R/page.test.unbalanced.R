@@ -7,6 +7,10 @@ page.test.unbalanced<-function(x,trt,blk,sides=2){
 #' @return P-value for Page test.
 #' @examples
 #' page.test.unbalanced(rnorm(15),rep(1:3,5),rep(1:5,rep(3,5)))
+#' @export
+#' @importFrom stats var
+#' @importFrom stats pnorm
+#' @importFrom stats rnorm
    makecmat<-function(trt,blk){
       nmat<-table(trt,blk)
       cmat<-array(NA,rep(length(unique(trt)),2))
