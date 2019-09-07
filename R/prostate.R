@@ -2,7 +2,6 @@
 #' @name prostate
 #' @description 221 prostate cancer patients are collected in this data set.
 #' @docType data
-#' @usage data(prostate)
 #' @format
 #' \itemize{
 #' \item hosp : Hospital in which the patient is hospitalized.

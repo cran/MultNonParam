@@ -24,8 +24,7 @@ symscorestat<-function(y,scores=NULL,exact=F,sides=1){
          as.double(scores),
          as.integer(length(y)),
          out=as.integer(0),
-         verbose=as.logical(FALSE)
-         )$out
+         verbose=as.logical(FALSE),PACKAGE="MultNonParam")$out
 #     cat("out",out)
       pvo<-out*2^(-length(y))
    }else{

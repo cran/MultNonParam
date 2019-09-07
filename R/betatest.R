@@ -10,11 +10,9 @@
 #' @useDynLib MultNonParam betatestf
 betatest<-function(x,y){
   if(length(x)>10) cat("Warning: this will take forever.")
-  out<-.Fortran(betatestf
-                ,as.integer(length(x))
+  out<-.Fortran("betatestf",as.integer(length(x))
                 ,as.double(x)
                 ,as.double(y)
-                ,pval=as.double(0)
-                )
+                ,pval=as.double(0),PACKAGE="MultNonParam")
   return(out$pval)
 }

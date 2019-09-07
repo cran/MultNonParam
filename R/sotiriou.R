@@ -17,8 +17,7 @@
 #' C. Sotiriou, P. Wirapati, S. Loi, A. Harris, S. Fox, J. Smeds, H. Nordgren, P. Farmer, V. Praz, B. Haibe-Kains, C. Desmedt, D. Larsimont, F. Cardoso, H. Peterse, D. Nuyten, M. Buyse, M. Van de Vijver, J. Bergh, M. Piccart, M. Delorenzi  (2006), \emph{Gene expression profiling in breast cancer: understanding the molecular basis of histologic grade to improve prognosis}, Journal of the National Cancer Institute 98 262-72.
 #' @examples 
 #' data(sotiriou)
-#' attach(sotiriou)
-#' plot(AGE,TUMOR_SIZE,pch=(recur+1),
+#' plot(sotiriou$AGE,sotiriou$TUMOR_SIZE,pch=(sotiriou$recur+1),
 #'    main="Age and Tumor Size",
 #'    sub="Breast Cancer Recurrence Data",
 #'    xlab="Age (years)",ylab="Tumor Size",
@@ -27,4 +26,4 @@
 #'    col=c("blue","darkolivegreen"))
 #' 
 #' @source https://gdoc.georgetown.edu/gdoc/
-NULL
+"sotiriou"

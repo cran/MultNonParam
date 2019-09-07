@@ -61,13 +61,13 @@ probest<-function(ds,resp,grp,str=NULL,covs=NULL,delta=NA,correct=FALSE){
      strv<-as.numeric(as.factor(ds[[str]]))
   }
   ustr<-unique(strv)
-  out<-.Fortran(probestf,
+  out<-.Fortran("probestf",
                 as.integer(length(resp)), M, as.integer(N), as.integer(grpv),
                 as.integer(length(gn)), as.integer(gn),
                 as.integer(strv), as.integer(ustr),as.integer(length(ustr)),
                 as.double(as.matrix(ds[,resp])), as.double(as.matrix(covariates)),
                 as.logical(!is.na(ds[,resp])),as.double(delta),
                 b=as.double(rep(0,r)),Vb=as.double(rep(0,r^2)),
-                correct=as.logical(correct))
+                correct=as.logical(correct),PACKAGE="MultNonParam")
   return(list(b=out$b,Vb=array(out$Vb,c(r,r))))
 }

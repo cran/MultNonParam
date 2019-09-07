@@ -11,12 +11,15 @@ extern void F77_NAME(signtestperm)(void *, void *, void *, void *, void *);
 extern void F77_NAME(aovp)(void *,void *,void *, void *, void *, void *, void *);
 extern void F77_NAME(betatestf)(void *,void *,void *, void *);
 extern void F77_NAME(probestf)( void *,void *,void *, void *, void *,void *,void *, void *, void *,void *,void *, void *, void *,void *,void *, void *);
+extern void F77_NAME(wildings)(void *, void *, void *, void *, void *, void *, void *);
+
 
 static const R_FortranMethodDef FortranEntries[] = {
     {"signtestperm", (DL_FUNC) &F77_NAME(signtestperm), 5},
     {"aovp", (DL_FUNC) &F77_NAME(aovp), 7},
     {"betatestf", (DL_FUNC) &F77_NAME(betatestf), 4},
     {"probestf", (DL_FUNC) &F77_NAME(probestf), 16},
+    {"wildings",     (DL_FUNC) &F77_NAME(wildings),      7},
     {NULL, NULL, 0}
 };
 

@@ -30,13 +30,13 @@ aov.P<-function(dattab,permi=NULL,be=NULL){
      nb<-length(be)
   }
   if(!bad){
-     out<-.Fortran(aovp,
+     out<-.Fortran("aovp",
                 as.integer(n),
                 as.integer(permi),
                 as.integer(nb),
                 as.integer(be),
                 as.double(xx),
-                tot=as.double(0),pv=as.double(0))
+                tot=as.double(0),pv=as.double(0),PACKAGE="MultNonParam")
      return(list(pv=out$pv,tot=out$tot))
   }else{
      return(NULL)

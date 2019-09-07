@@ -12,9 +12,6 @@
 \item age : age of the patient.
 \item advanced : boolean. \code{TRUE} if the cancer is advanced.
 }}
-\usage{
-data(prostate)
-}
 \description{
 221 prostate cancer patients are collected in this data set.
 }
