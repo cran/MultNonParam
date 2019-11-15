@@ -11,6 +11,8 @@ page.test.unbalanced<-function(x,trt,blk,sides=2){
 #' @importFrom stats var
 #' @importFrom stats pnorm
 #' @importFrom stats rnorm
+   trt<-as.numeric(as.factor(trt))
+   blk<-as.numeric(as.factor(blk))
    makecmat<-function(trt,blk){
       nmat<-table(trt,blk)
       cmat<-array(NA,rep(length(unique(trt)),2))
@@ -46,7 +48,7 @@ page.test.unbalanced<-function(x,trt,blk,sides=2){
          rr<-rank(x[blk==oneblk])
          thesetrt<-trt[blk==oneblk]
          for(onet in unique(trt)){
-            ranksums[onet]<-ranksums[onet]+rr[thesetrt==onet]
+            ranksums[onet]<-ranksums[onet]+sum(rr[thesetrt==onet])
          }
       }
       return(ranksums/table(trt))
@@ -67,7 +69,18 @@ page.test.unbalanced<-function(x,trt,blk,sides=2){
    moms<-makecmat(trt,blk)
    z<-seq(nt)%*%(rm-moms$mvec)/sqrt(seq(nt)%*%moms$cmat%*%seq(nt))
    pval<-pnorm(z,lower.tail=F)
-   if(sides==2) pval<-min(pval,1-pval)*2
-   return(list(z=z,pval=pval))
+   if(sides==2) {
+      pval<-min(pval,1-pval)*2
+      alts<-"two-sided"
+   }else{alts<-"greater"}
+   nullval<-0
+   names(nullval)<-"median"
+   parmout<-c(seq(nt)%*%moms$mvec,seq(nt)%*%moms$cmat%*%seq(nt))
+   names(parmout)<-c("Expectation","Variance")
+   out<-list(null.value=nullval,alternative=alts,method="Page",
+      statistic=seq(nt)%*%rm,z=z,p.value=pval,parameters=parmout,
+      rankmeans=rm,rankmeanexpect=moms$mvec,rankmeanvar=moms$cmat)
+   class(out)<-"htest"
+   return(out)
 }
 #fun.checkvar(trt,blk)
