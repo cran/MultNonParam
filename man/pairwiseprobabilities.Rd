@@ -4,8 +4,11 @@
 \alias{pairwiseprobabilities}
 \title{Pairwise probabilities of Exceedence}
 \usage{
-pairwiseprobabilities(shifts, distname = c("normal", "logistic"),
-  taylor = FALSE)
+pairwiseprobabilities(
+  shifts,
+  distname = c("normal", "logistic"),
+  taylor = FALSE
+)
 }
 \arguments{
 \item{shifts}{The offsets for the various populations, under the alternative hypothesis.}

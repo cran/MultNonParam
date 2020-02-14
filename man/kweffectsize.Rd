@@ -4,9 +4,14 @@
 \alias{kweffectsize}
 \title{Sample Size for the Kruskal-Wallis test.}
 \usage{
-kweffectsize(totsamp, shifts, distname = c("normal", "logistic"),
-  targetpower = 0.8, proportions = rep(1,
-  length(shifts))/length(shifts), level = 0.05)
+kweffectsize(
+  totsamp,
+  shifts,
+  distname = c("normal", "logistic"),
+  targetpower = 0.8,
+  proportions = rep(1, length(shifts))/length(shifts),
+  level = 0.05
+)
 }
 \arguments{
 \item{totsamp}{sample size}

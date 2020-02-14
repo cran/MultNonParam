@@ -4,9 +4,14 @@
 \alias{kwsamplesize}
 \title{Sample Size for the Kruskal-Wallis test.}
 \usage{
-kwsamplesize(shifts, distname = c("normal", "logistic"),
-  targetpower = 0.8, proportions = rep(1,
-  length(shifts))/length(shifts), level = 0.05, taylor = FALSE)
+kwsamplesize(
+  shifts,
+  distname = c("normal", "logistic"),
+  targetpower = 0.8,
+  proportions = rep(1, length(shifts))/length(shifts),
+  level = 0.05,
+  taylor = FALSE
+)
 }
 \arguments{
 \item{shifts}{The offsets for the various populations, under the alternative hypothesis.}

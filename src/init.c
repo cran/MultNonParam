@@ -15,6 +15,8 @@ extern void F77_NAME(pconcordant)(void *, void *, void *);
 extern void F77_NAME(probestf)(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
 extern void F77_NAME(qconcordant)(void *, void *, void *);
 extern void F77_NAME(signtestperm)(void *, void *, void *, void *, void *);
+extern void F77_NAME(tskmsurv)(void *, void *, void *, void *, void *, void *, void *, void *);
+extern void F77_NAME(tskmsurvpv)(void *, void *, void *, void *, void *, void *, void *, void *, void *);
 
 static const R_FortranMethodDef FortranEntries[] = {
     {"aovp",         (DL_FUNC) &F77_NAME(aovp),          7},
@@ -25,6 +27,8 @@ static const R_FortranMethodDef FortranEntries[] = {
     {"probestf",     (DL_FUNC) &F77_NAME(probestf),     16},
     {"qconcordant",  (DL_FUNC) &F77_NAME(qconcordant),   3},
     {"signtestperm", (DL_FUNC) &F77_NAME(signtestperm),  5},
+    {"tskmsurv",     (DL_FUNC) &F77_NAME(tskmsurv),      8},
+    {"tskmsurvpv",   (DL_FUNC) &F77_NAME(tskmsurvpv),    9},
     {NULL, NULL, 0}
 };
 

@@ -4,12 +4,12 @@
 \alias{aov.P}
 \title{One-way ANOVA using permutation tests}
 \usage{
-aov.P(dattab, permi = NULL, be = NULL)
+aov.P(dattab, treatment = NULL, be = NULL)
 }
 \arguments{
 \item{dattab}{The table on which the ANOVA has to be done, or a vector of responses.}
 
-\item{permi}{If dattab is a table, ignored.  If dattab is a vector, a vector of treatment labels.}
+\item{treatment}{If dattab is a table, ignored.  If dattab is a vector, a vector of treatment labels.}
 
 \item{be}{If dattab is a table, ignored.  If dattab is a vector, a vector of end points of blocks.  In this case, blocks must form contiguous subvectors of dattab.  If null, no blocking.}
 }

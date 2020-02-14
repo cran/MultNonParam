@@ -4,8 +4,14 @@
 \alias{kwpower}
 \title{Power for the Kruskal-Wallis test.}
 \usage{
-kwpower(nreps, shifts, distname = c("normal", "logistic"),
-  level = 0.05, mc = 0, taylor = FALSE)
+kwpower(
+  nreps,
+  shifts,
+  distname = c("normal", "logistic"),
+  level = 0.05,
+  mc = 0,
+  taylor = FALSE
+)
 }
 \arguments{
 \item{nreps}{The numbers in each group.}

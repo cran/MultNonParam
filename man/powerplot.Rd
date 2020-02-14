@@ -4,8 +4,14 @@
 \alias{powerplot}
 \title{Power Plot}
 \usage{
-powerplot(numgrps = 3, thetadagger = NULL, nnvec = 5:30,
-  nmc = 50000, targetpower = 0.8, level = 0.05)
+powerplot(
+  numgrps = 3,
+  thetadagger = NULL,
+  nnvec = 5:30,
+  nmc = 50000,
+  targetpower = 0.8,
+  level = 0.05
+)
 }
 \arguments{
 \item{numgrps}{Number of groups to compare}

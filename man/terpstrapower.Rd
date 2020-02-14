@@ -4,8 +4,13 @@
 \alias{terpstrapower}
 \title{Power for the nonparametric Terpstra test for an ordered effect.}
 \usage{
-terpstrapower(nreps, shifts, distname = c("normal", "logistic"),
-  level = 0.025, mc = 0)
+terpstrapower(
+  nreps,
+  shifts,
+  distname = c("normal", "logistic"),
+  level = 0.025,
+  mc = 0
+)
 }
 \arguments{
 \item{nreps}{The numbers in each group.}

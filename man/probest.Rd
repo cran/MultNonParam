@@ -4,8 +4,7 @@
 \alias{probest}
 \title{Stratified Multivariate Kawaguchi Koch Wang  Estimators}
 \usage{
-probest(ds, resp, grp, str = NULL, covs = NULL, delta = NA,
-  correct = FALSE)
+probest(ds, resp, grp, str = NULL, covs = NULL, delta = NA, correct = FALSE)
 }
 \arguments{
 \item{ds}{The data frame to be used.}
