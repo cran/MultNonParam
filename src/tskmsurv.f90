@@ -1,4 +1,5 @@
-      subroutine tskmsurv(ntot,rt,delta,ngrp,group,nstats,stats,names)
+!     subroutine tskmsurv(ntot,rt,delta,ngrp,group,nstats,stats,names)
+      subroutine tskmsurv(ntot,rt,delta,ngrp,group,nstats,stats)
 implicit none
 ! Arguments
 ! ntot   integer   1      number of observations
@@ -12,9 +13,9 @@ implicit none
       integer ntot,rt(ntot),delta(ntot),ngrp,group(ntot)
       double precision,allocatable,dimension(:):: s
       integer,allocatable,dimension(:):: y,dv,cv,grpsz
-      integer ii,jj,dd,this,mxr,mir,next,yt,dt,ct,nstats
+      integer ii,jj,this,mxr,mir,next,yt,dt,ct,nstats
       double precision pooleds,lastpooleds,stats(max(nstats,1)),sa
-      character*3 names(max(nstats,1))
+!     character (*) :: names
 !     character*58 fmt
 !     fmt="(a4,1x,i2,1x,2(a6,1x,  (i2,1x)),a8,  (1x,f5.3),a6,1x,f5.3)"
 !     write(fmt(22:23),'(i2)') ngrp
@@ -25,7 +26,7 @@ implicit none
       if(nstats.eq.0) then
          nstats=4
       else
-         names(1)="KS ";names(2)="AD ";names(3)="CV1";names(4)="CV2"
+!        names="KS AD CV1CV2"
          allocate(s(ngrp),y(ngrp),dv(ngrp),cv(ngrp),grpsz(ngrp))
          do jj=1,ngrp
             y(jj)=0;s(jj)=1.0d0

@@ -18,13 +18,16 @@ twosamplesurvpvs<-function(times,delta,grp,nmc=10000,plotme=TRUE,exact=FALSE){
       pvalsa<-.Fortran("tskmsurvpv",     as.integer(length(times)),
          as.integer(rank(times,ties.method="min")), as.integer(delta),
          as.integer(length(table(grp))), as.integer(as.factor(grp)),
-         as.integer(0),pvals=as.double(c(0,0)),as.character("   "),
+         as.integer(0),pvals=as.double(c(0,0)),
+#        as.character("   "),
          as.integer(0), PACKAGE="MultNonParam")$pvals
+      blanknames<-paste(rep(" ",pvalsa[[6]]),sep="",collapse="")
       out<-.Fortran("tskmsurvpv",     as.integer(length(times)),
          as.integer(rank(times,ties.method="min")), as.integer(delta),
          as.integer(length(table(grp))), as.integer(as.factor(grp)),
          as.integer(pvalsa[[6]]),pvals=as.double(rep(0,pvalsa[[6]])), 
-         as.character(rep("   ",pvalsa[[6]])),as.integer(0),
+#        as.character(blanknames),
+         as.integer(0),
          PACKAGE="MultNonParam")
       pvals<-out$pvals
 #     names(pvals)<-out[[8]]

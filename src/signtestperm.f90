@@ -9,6 +9,7 @@ implicit none
        logical done
        double precision testobs,testnew
        allocate(index(n))
+       if(verbose) ii=0
        do ii=1,n
           index(ii)=(y(ii).gt.0.0d0)
 !         write(6,*) "index(ii)",index(ii),"y(ii)",y(ii)

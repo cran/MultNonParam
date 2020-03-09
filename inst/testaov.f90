@@ -1,6 +1,6 @@
        program testaov
 implicit none
-       integer n,out,ii,nb
+       integer n,ii,nb
        double precision pv
        double precision,allocatable,dimension(:):: y
        integer,allocatable,dimension(:):: grp,be

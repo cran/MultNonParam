@@ -4,7 +4,7 @@ implicit none
       double precision,allocatable,dimension(:)::time,cens
       integer,allocatable,dimension(:)::group,delta,rt
       double precision stats(4),pvs(4)
-      character*3 names(4)
+      character (len=12) :: names
       ngrp=2
       write(6,*) "ntot"
       read(5,*) ntot

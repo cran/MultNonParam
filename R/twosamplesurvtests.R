@@ -16,7 +16,7 @@ twosamplesurvtests<-function(times,delta,grp){
      as.integer(as.factor(grp)),
      as.integer(0),
      stats=as.double(0),
-     names=as.character("   "),
+#    names=as.character("   "),
      PACKAGE="MultNonParam")
   out<-.Fortran("tskmsurv",
      as.integer(length(times)),
@@ -26,7 +26,7 @@ twosamplesurvtests<-function(times,delta,grp){
      as.integer(as.factor(grp)),
      as.integer(outa[[6]]),
      stats=as.double(rep(0,outa[[6]])),
-     names=as.character(rep("   ",outa[[6]])),
+#    names=as.character(rep("   ",outa[[6]])),
      PACKAGE="MultNonParam")
   stats<-out$stats
 # names(stats)<-c("KolmogorovSmirnov","AndersonDarling")

@@ -1,6 +1,6 @@
       subroutine rankem(time,rt,nobs)
 implicit none
-      integer nobs,ii,jj,count
+      integer nobs,ii,count
       integer rt(nobs)
       double precision time(nobs),mint,maxt,next
       logical done

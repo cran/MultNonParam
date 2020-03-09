@@ -94,6 +94,7 @@ implicit none
      integer nn,ss,ii
      integer(kind=8) pullcache
      logical cdf
+     ii=0
 !    write(6,*) "nnvec",(nnvec(ii),ii=1,initnn),"nn=",nn,"ss=",ss
      if((ss.ge.0).and.(ss.le.(nn*(nn-1)/2))) then 
         pullcache=uuvec(nnvec(nn)+ss)

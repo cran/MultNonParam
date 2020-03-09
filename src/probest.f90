@@ -140,6 +140,7 @@ implicit none
      double precision truv
      double precision Vf11(r,r),Vf21(M,r),Vf22(M,M),Vf12(r,M)
      integer ii,jj
+     ii=floor(truv)
      do ii=1,r
         do jj=1,r
            if(.not.(ii.eq.jj)) Vf11(ii,jj)=truv*Vf11(ii,jj)/sqrt(Vf11(ii,ii)*Vf11(jj,jj))
