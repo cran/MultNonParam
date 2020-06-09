@@ -25,7 +25,9 @@ testtskmsurv.o: testtskmsurv.f90
 	gfortran -Wall -fbounds-check -fcheck=all -c -o testtskmsurv.o testtskmsurv.f90
 rankem.o: ../src/rankem.f90
 	gfortran -Wall -fbounds-check -fcheck=all -c -o rankem.o ../src/rankem.f90
-tskmsurv.o: ../src/tskmsurv.f90
-	gfortran -Wall -fbounds-check -fcheck=all -c -o tskmsurv.o ../src/tskmsurv.f90
+#tskmsurv.o: ../src/tskmsurv.f90
+#	gfortran -Wall -fbounds-check -fcheck=all -c -o tskmsurv.o ../src/tskmsurv.f90
+tskmsurv.o: tskmsurv.F90
+	gfortran -Wall -fbounds-check -fcheck=all -c -o tskmsurv.o tskmsurv.F90
 testaov.o: testaov.f90
 	gfortran -Wall -fbounds-check -fcheck=all -c -o testaov.o testaov.f90

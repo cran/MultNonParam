@@ -11,6 +11,7 @@
       count(1)=1
       ii=1
 !     write(6,*) "ntot",ntot
+!     write(6,*) "group",group
       do while((jj.le.ngrp).and.(ii.lt.ntot))
 !        write(6,*) "ntot in loop",ntot," ii ",ii," check ",(ii.le.ntot)
          ii=ii+1
@@ -31,6 +32,7 @@
             end if
          end if
       end do
+!     write(6,*) "grplabs",grplabs,"count",count
       if(jj.gt.ngrp) then
          efg=1
       else

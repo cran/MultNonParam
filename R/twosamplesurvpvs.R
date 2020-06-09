@@ -13,25 +13,35 @@
 #' twosamplesurvpvs(rexp(20),rbinom(20,1,.5),rbinom(20,1,.5))
 #' @useDynLib MultNonParam tskmsurv
 twosamplesurvpvs<-function(times,delta,grp,nmc=10000,plotme=TRUE,exact=FALSE){
+   oo<-order(grp)
+   times<-times[oo]
+   delta<-delta[oo]
+   grp<-grp[oo]
    tobs<-twosamplesurvtests(times,delta,grp)
    if(exact){
-      pvalsa<-.Fortran("tskmsurvpv",     as.integer(length(times)),
-         as.integer(rank(times,ties.method="min")), as.integer(delta),
-         as.integer(length(table(grp))), as.integer(as.factor(grp)),
-         as.integer(0),pvals=as.double(c(0,0)),
-#        as.character("   "),
-         as.integer(0), PACKAGE="MultNonParam")$pvals
-      blanknames<-paste(rep(" ",pvalsa[[6]]),sep="",collapse="")
-      out<-.Fortran("tskmsurvpv",     as.integer(length(times)),
-         as.integer(rank(times,ties.method="min")), as.integer(delta),
-         as.integer(length(table(grp))), as.integer(as.factor(grp)),
-         as.integer(pvalsa[[6]]),pvals=as.double(rep(0,pvalsa[[6]])), 
-#        as.character(blanknames),
-         as.integer(0),
+       grpcnts<-range(table(grp))
+       nobs<-length(times)
+       nmc<-prod((grpcnts[2]+1):nobs)/prod(1:grpcnts[1])
+       ngrp<-length(table(grp))
+       rt<-rank(times,ties.method="min")
+#First call determines number of test statitistics.
+       nstat<-.Fortran("tskmsurvpv",as.integer(length(times)),
+          as.integer(rank(times,ties.method="min")), as.integer(delta),
+          as.integer(length(table(grp))), as.integer(as.factor(grp)),
+          npv=as.integer(0),pvals=as.double(c(0,0)),
+          cnt=as.integer(nmc),statsmat=as.double(0.0),
+          as.integer(0), PACKAGE="MultNonParam")$npv
+       out<-.Fortran("tskmsurvpv",as.integer(nobs),as.integer(rt), 
+         as.integer(delta),as.integer(ngrp),as.integer(as.factor(grp)),
+         as.integer(nstat),pvals=as.double(rep(0,nstat)), 
+         cnt=as.integer(nmc),statsmat=as.double(rep(0,max(1,nstat*nmc))), 
+         efg=as.integer(0),
          PACKAGE="MultNonParam")
       pvals<-out$pvals
 #     names(pvals)<-out[[8]]
       names(pvals)<-c("KS ","AD ","CM1","CM2")
+      nmc<-out$cnt
+      out<-matrix(out$statsmat,ncol=nstat,byrow=TRUE)
    }else{
       count<-rep(0,length(tobs))
       out<-array(NA,c(nmc,length(tobs)))
@@ -54,5 +64,7 @@ twosamplesurvpvs<-function(times,delta,grp,nmc=10000,plotme=TRUE,exact=FALSE){
       names(count)<-names(tobs)
       pvals<-count/nmc
    }
-   return(list(pvals=pvals,stats=tobs))
+   return(list(pvals=pvals,stats=tobs,nmc=nmc,
+#     out=out,
+      cv=apply(out,2,quantile,0.95)))
 }

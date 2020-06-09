@@ -19,6 +19,6 @@ A vector of length two, with the Kolmogorov-Smirnov and Anderson-Darling statist
 \description{
 Returns the Kolmogorov-Smirnov and Anderson-Darling test statistics for two right-censored data sets.
 }
-\details{
-The function calls a Fortran code to calculate the estimators \code{b} and their variance-covariance matrix \code{Vb}
+\examples{
+twosamplesurvpvs(rexp(20),rbinom(20,1,.5),rbinom(20,1,.5))
 }

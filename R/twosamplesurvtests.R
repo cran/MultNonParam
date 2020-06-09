@@ -3,10 +3,11 @@
 #' @param times Event and censoring times
 #' @param delta Indicator of event (1) or censoring (0).
 #' @param grp Variable that divides the population into groups.
-#' @details The function calls a Fortran code to calculate the estimators \code{b} and their variance-covariance matrix \code{Vb}
 #' @return  A vector of length two, with the Kolmogorov-Smirnov and Anderson-Darling statistics.
 #' @export
 #' @useDynLib MultNonParam tskmsurv
+#' @examples
+#' twosamplesurvpvs(rexp(20),rbinom(20,1,.5),rbinom(20,1,.5))
 twosamplesurvtests<-function(times,delta,grp){
   outa<-.Fortran("tskmsurv",
      as.integer(length(times)),
