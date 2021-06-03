@@ -1,4 +1,4 @@
-90bfe746cb43499e7ab5ad9bb08f0627 *DESCRIPTION
+6cee6b04be870808671cd93424d129c0 *DESCRIPTION
 3fcf020fd9e6a9ce0ffedf494c8de902 *NAMESPACE
 51fa811ae4cda7e4d4508a092d99a7aa *R/MultNonParam.R
 3cc5ac65b0966b8be7105cee7492a723 *R/aov.P.R
@@ -19,7 +19,7 @@ f687fe273c12bb02f774971850a3c152 *R/kweffectsize.R
 20c138cebc3ac04fc6adc605906cb9da *R/page.test.unbalanced.R
 06b7cf03f507046d5bbf554614b71774 *R/pairwiseprobabilities.R
 753f944451d90e5f9725270ba4395847 *R/pconcordant.R
-fb0c3aaacd13214e650c1140c11c7ab8 *R/powerplot.R
+7eff5badb3ff01faa07ba0847857086d *R/powerplot.R
 b048f41b58620bf5d12bcafde1c3b68b *R/probest.R
 a6b46f693c147a3568b27e51bb41a8d3 *R/prostate.R
 fca0eee6d0860806eb4198ce7a1bafc3 *R/qconcordant.R
@@ -33,7 +33,7 @@ a6f4dde38a6810ff31287fb4d03066bd *R/symscorestat.R
 31ae0f4304f3180d3d146391b56e766d *R/testve.R
 e555328c79331290fa4556179ed0c55f *R/theil.R
 90ae2dc50114031eafc77b0425161579 *R/tukey.kruskal.test.R
-d07ffa9bceab9565d494931f6560c84f *R/twosamplesurvpvs.R
+f6513e0e665c1a427e66b47bb5f9dbd5 *R/twosamplesurvpvs.R
 9e90c80259fa9d7386130c67a5b53f5b *R/twosamplesurvtests.R
 5114203a0c62322079cc09b94d8e4fa0 *R/util.jplot.R
 d4b9d20a63960eb95e681def084ae36a *data/prostate.rda

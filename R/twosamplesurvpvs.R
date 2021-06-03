@@ -54,7 +54,9 @@ twosamplesurvpvs<-function(times,delta,grp,nmc=10000,plotme=TRUE,exact=FALSE){
          count<-count+((out[jj,]<-onetests)>=tobs)
       }
       if(plotme){
-         plot(c(0,1),range(out),type="n")
+         plot(c(0,1),range(out),type="n",xlab="Test Level",
+            main="Critical Values for Various Two-Sample Tests",
+            ylab="Critical Value")
          for(jj in seq(length(tobs))){
             lines(seq(nmc)/nmc,sort(out[,jj]),lty=jj)
             abline(h=tobs[jj],lty=jj)

@@ -18,11 +18,11 @@ powerplot<-function(numgrps=3,thetadagger=NULL,nnvec=5:30,nmc=50000,targetpower=
          proportions=rep(1,length(thetadagger))/length(thetadagger),
          level=0.05)
 #     cat("Delta",Delta)
-      out[jj,1]<-kwpower(nreps=rep(nnvec[jj],3),shifts=Delta*thetadagger,
+      out[jj,1]<-kwpower(nreps=rep(nnvec[jj],numgrps),shifts=Delta*thetadagger,
          distname="normal",level=0.05,mc=0,taylor=TRUE)$power
-      out[jj,2]<-kwpower(nreps=rep(nnvec[jj],3),shifts=Delta*thetadagger,
+      out[jj,2]<-kwpower(nreps=rep(nnvec[jj],numgrps),shifts=Delta*thetadagger,
          distname="normal",level=0.05,mc=0)$power
-      out[jj,3]<-kwpower(nreps=rep(nnvec[jj],3),shifts=Delta*thetadagger,
+      out[jj,3]<-kwpower(nreps=rep(nnvec[jj],numgrps),shifts=Delta*thetadagger,
          distname="normal",level=0.05,mc=nmc)$power
    }
    plot(range(nnvec),range(out),type="n",
