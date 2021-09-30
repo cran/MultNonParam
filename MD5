@@ -1,4 +1,4 @@
-6cee6b04be870808671cd93424d129c0 *DESCRIPTION
+138875d01173ea147b72511c8c199807 *DESCRIPTION
 3fcf020fd9e6a9ce0ffedf494c8de902 *NAMESPACE
 51fa811ae4cda7e4d4508a092d99a7aa *R/MultNonParam.R
 3cc5ac65b0966b8be7105cee7492a723 *R/aov.P.R
@@ -19,7 +19,7 @@ f687fe273c12bb02f774971850a3c152 *R/kweffectsize.R
 20c138cebc3ac04fc6adc605906cb9da *R/page.test.unbalanced.R
 06b7cf03f507046d5bbf554614b71774 *R/pairwiseprobabilities.R
 753f944451d90e5f9725270ba4395847 *R/pconcordant.R
-7eff5badb3ff01faa07ba0847857086d *R/powerplot.R
+b2e58d50708e84ad9eae3198e3969aa3 *R/powerplot.R
 b048f41b58620bf5d12bcafde1c3b68b *R/probest.R
 a6b46f693c147a3568b27e51bb41a8d3 *R/prostate.R
 fca0eee6d0860806eb4198ce7a1bafc3 *R/qconcordant.R
