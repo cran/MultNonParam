@@ -5,7 +5,7 @@
 #' @param exact logical value controlling whether confidence intervals are exact or asymlptotic.
 #' @param newplot logical value controlling whether the estimate is added to an existing plot, or whether a new plot should be constructed.
 #' @export
-#' @importFrom graphics segments
+#' @importFrom graphics segments plot lines points
 #' @importFrom stats binom.test quantile
 ecdfcis<-function(data,alpha=0.05,dataname=NA,exact=TRUE,newplot=TRUE){
    startlty<-if(newplot) 0 else 2

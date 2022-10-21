@@ -11,14 +11,14 @@
 #'J.J. Higgins, (2004), \emph{Introduction to Modern Nonparametric Statistics}, Brooks/Cole, Cengage Learning.
 #'
 #' @export
-#' @importFrom stats qtukey
+#' @importFrom stats qtukey ptukey
 tukey.kruskal.test<-function(resp,grp,alpha=.05){
   ld<-split(resp,grp)
   nv<-sapply(ld,length)
   rm<-sapply(split(rank(resp),grp),mean)
   ng<-length(rm)
   N<-sum(nv)
-  out<-array(NA,c(ng*(ng-1)/2,2))
+  out<-array(NA,c(ng*(ng-1)/2,3))
   dimnames(out)<-list(rep("",ng*(ng-1)/2),NULL)
   rr<-rank(resp)
   count<-0
@@ -27,11 +27,12 @@ tukey.kruskal.test<-function(resp,grp,alpha=.05){
   # and we calculate confidence intervals instead of p-values.
   for(i in 1:(ng-1)) for(j in (i+1):ng){
     count<-count+1
-    out[count,]<-rm[j]-rm[i]+c(-1,1)*qtukey(1-alpha,ng,N-ng)*
-      sqrt(N*(N+1)/24)*sqrt(1/nv[i]+1/nv[j])
+    se<-sqrt(N*(N+1)/24)*sqrt(1/nv[i]+1/nv[j])
+    out[count,1:2]<-rm[j]-rm[i]+c(-1,1)*qtukey(1-alpha,ng,10000)*se
+    out[count,3]<-ptukey(abs(rm[j]-rm[i])/se,ng,10000,lower.tail=FALSE)
     dimnames(out)[[1]][count]<-paste(i,j,sep="-")
   }
-  different<-(out[,1]>0)|(out[,2]<0)
-  names(different)<-dimnames(out)[[1]]
+  different<-cbind((out[,1]>0)|(out[,2]<0)+0,out[,3])
+  dimnames(different)<-list(dimnames(out)[[1]],c("Difference","p value"))
   return(different)
 }

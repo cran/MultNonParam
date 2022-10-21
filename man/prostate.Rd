@@ -4,14 +4,16 @@
 \name{prostate}
 \alias{prostate}
 \title{prostate}
-\format{\itemize{
+\format{
+\itemize{
 \item hosp : Hospital in which the patient is hospitalized.
 \item stage : stage of the cancer.
 \item gleason score : used to help evaluate the prognosis of the cancer.
 \item psa : prostate-specific antigen.
 \item age : age of the patient.
 \item advanced : boolean. \code{TRUE} if the cancer is advanced.
-}}
+}
+}
 \description{
 221 prostate cancer patients are collected in this data set.
 }

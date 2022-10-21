@@ -4,14 +4,16 @@
 \name{sotiriou}
 \alias{sotiriou}
 \title{Breast cancer data set}
-\format{A data set with the following variables
+\format{
+A data set with the following variables
 \itemize{
 \item AGE : Age of the patient
 \item TUMOR_SIZE : The size of the tumor, numeric variable
 \item recur : 1 if the patient has a recurent breast cancer, 0 if it is not reccurent.
 \item ELSTON.ELLIS_GRADE : Elston Ellis grading system in order toclassify the breast cancers. It can be a low, intermediate or high grade (high being the worst prognosis)
 \item TAMOXIFEN_TREATMENT : boolean. \code{TRUE} if the patient is treated with the Tamoxifen treatment.
-}}
+}
+}
 \source{
 https://gdoc.georgetown.edu/gdoc/
 }
