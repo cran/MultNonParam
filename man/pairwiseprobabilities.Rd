@@ -6,14 +6,14 @@
 \usage{
 pairwiseprobabilities(
   shifts,
-  distname = c("normal", "logistic"),
+  distname = c("normal", "cauchy", "logistic"),
   taylor = FALSE
 )
 }
 \arguments{
 \item{shifts}{The offsets for the various populations, under the alternative hypothesis.}
 
-\item{distname}{The distribution of the underlying observations; normal and logistic are currently supported.}
+\item{distname}{The distribution of the underlying observations; normal, cauchy, and logistic are currently supported.}
 
 \item{taylor}{Logical flag forcing the approximation of exeedence probabilities using a Taylor series.}
 }

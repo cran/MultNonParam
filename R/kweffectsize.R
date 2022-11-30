@@ -14,8 +14,11 @@
 #' @importFrom stats rlogis
 #' @export
 #' @examples
-#' kwpower(rep(10,3),c(0,1,2),"normal")
-kweffectsize<-function(totsamp,shifts,distname=c("normal","logistic"),
+#' #Calculate the effecct size necessary to have the desired power .8 for a test
+#' #with the level .5 with sample size 60, group centers 0, 1, and 2, 
+#' #normally distributed observations, evenly split among the three groups.
+#' kweffectsize(60,c(0,1,2),"normal")
+kweffectsize<-function(totsamp,shifts,distname=c("normal","logistic","cauchy"),
    targetpower=0.8,proportions=rep(1,length(shifts))/length(shifts),level=0.05){
    kappacirc<-probabilityderiv(distname)
    myncp<-solvencp(length(proportions)-1,level=level,targetpower=targetpower)

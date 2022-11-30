@@ -4,7 +4,7 @@
 \alias{probabilityderiv}
 \title{Derivative of pairwise probabilities of Exceedence}
 \usage{
-probabilityderiv(distname = c("normal", "logistic"))
+probabilityderiv(distname = c("normal", "cauchy", "logistic"))
 }
 \arguments{
 \item{distname}{The distribution of the underlying observations; normal and logistic are currently supported.}

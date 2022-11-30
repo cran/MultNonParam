@@ -4,14 +4,15 @@
 \alias{shiftcr}
 \title{Nonparametric Confidence Region for a Vector Shift Parameter}
 \usage{
-shiftcr(xm)
+shiftcr(xm,  hpts = 50)
 }
 \arguments{
-\item{xm}{A bivariate data vector whosse two location parameters are to be estimated.}
+\item{xm}{A two-column matrix of bivariate data whose two location parameters are to be estimated.}
+\item{hpts}{Controls the number of grid points, by constructing a grid of 2*hpts+1 on each side.}
 }
 \value{
 nothing
 }
 \description{
-Inversion of a one-sample bivariate rank test is used to produce a confidence region.
+Inversion of a one-sample bivariate rank test is used to produce a confidence region.  The region is constructed by building a grid of potential parameter values, evaluating the test statistic on each grid point, collecting the p-values, and then drawing the appropriate countour of the p-values.  The grid is centered at the bivariate median of the data set.
 }

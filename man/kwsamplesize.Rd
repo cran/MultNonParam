@@ -6,7 +6,7 @@
 \usage{
 kwsamplesize(
   shifts,
-  distname = c("normal", "logistic"),
+  distname = c("normal", "logistic", "cauchy"),
   targetpower = 0.8,
   proportions = rep(1, length(shifts))/length(shifts),
   level = 0.05,
@@ -27,15 +27,18 @@ kwsamplesize(
 \item{taylor}{Logical flag forcing the approximation of exceedence probabilities using the first derivative at zero.}
 }
 \value{
-A list with components power, giving the power approximation, ncp, giving the noncentrality parameter, cv, giving the critical value, probs, giving the intermediate output from pairwiseprobability, and expect, the quantities summed before squaring in the noncentrality parameter.
+A list with the total number of observations needed to obtain approximate power, as long as this number is split amomg groups according to argument proportion.
 }
 \description{
-\code{kwsamplesize} approximates power for the Kruskal-Wallis test, 
+\code{kwsamplesize} approximates sample size for the Kruskal-Wallis test, 
 using a chi-square approximation under the null, and a non-central chi-square approximation under the alternative.  The noncentrality parameter is calculated using alternative means and the null variance structure.
 }
 \details{
-The standard noncentral chi-square power formula, or Monte Carlo, is used.
+The standard noncentral chi-square power formula, is used.
 }
 \examples{
-kwpower(rep(10,3),c(0,1,2),"normal")
+#Calculate the sample size necessary to detect differences among three
+#groups with centers at 0,1,2, from normal observations, using a test of
+#level 0.05 and power 0.80.
+kwsamplesize(c(0,1,2),"normal")
 }

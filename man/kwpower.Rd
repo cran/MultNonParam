@@ -7,7 +7,7 @@
 kwpower(
   nreps,
   shifts,
-  distname = c("normal", "logistic"),
+  distname = c("normal", "cauchy", "logistic"),
   level = 0.05,
   mc = 0,
   taylor = FALSE
@@ -18,7 +18,7 @@ kwpower(
 
 \item{shifts}{The offsets for the various populations, under the alternative hypothesis.}
 
-\item{distname}{The distribution of the underlying observations; normal and logistic are currently supported.}
+\item{distname}{The distribution of the underlying observations; normal, cauchy, and logistic are currently supported.}
 
 \item{level}{The test level.}
 
@@ -37,5 +37,8 @@ using a chi-square approximation under the null, and a non-central chi-square ap
 The standard noncentral chi-square power formula, or Monte Carlo, is used.
 }
 \examples{
+#Calculate the power for the Kruskal Wallis test for normal observations,
+#10 observations in each of three groups, with groups centered at 0, 1, 2.
+#Level is 0.05 by default.
 kwpower(rep(10,3),c(0,1,2),"normal")
 }

@@ -3,7 +3,7 @@
 #' using a chi-square approximation under the null, and a non-central chi-square approximation under the alternative.  The noncentrality parameter is calculated using alternative means and the null variance structure.
 #' @param nreps The numbers in each group.
 #' @param shifts The offsets for the various populations, under the alternative hypothesis.
-#' @param distname The distribution of the underlying observations; normal and logistic are currently supported.
+#' @param distname The distribution of the underlying observations; normal, cauchy, and logistic are currently supported.
 #' @param level The test level.
 #' @param mc 0 for asymptotic calculation, or positive for mc approximation.
 #' @param taylor logical determining whether Taylor series approximation is used for probabilities.
@@ -14,8 +14,11 @@
 #' @importFrom stats rlogis
 #' @export
 #' @examples
+#' #Calculate the power for the Kruskal Wallis test for normal observations,
+#' #10 observations in each of three groups, with groups centered at 0, 1, 2.
+#' #Level is 0.05 by default.
 #' kwpower(rep(10,3),c(0,1,2),"normal")
-kwpower<-function(nreps,shifts,distname=c("normal","logistic"),level=0.05,mc=0,taylor=FALSE){
+kwpower<-function(nreps,shifts,distname=c("normal","cauchy","logistic"),level=0.05,mc=0,taylor=FALSE){
    vartheta<-pairwiseprobabilities(shifts,distname,taylor=taylor)
    expect<-(vartheta-.5)%*%nreps
    ncp<-12*sum(nreps*expect^2)/(sum(nreps)*(sum(nreps)+1))

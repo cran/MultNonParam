@@ -13,6 +13,8 @@ theil<-function(x,y,conf=.9){
 #' theil(a,b)
 #' @export
 #' @importFrom stats median
+   if(any(dx<-diff(sort(x))==0)) warning("Function theil unreliable with ties in x")
+   if(any(dy<-diff(sort(y))==0)) warning("Function theil unreliable with ties in y")
    n<-length(x)
    out<-rep(NA,n*(n-1)/2)
    k<-0
@@ -21,7 +23,7 @@ theil<-function(x,y,conf=.9){
    }
    outs<-sort(out)
 #  message(c(length(outs),length(unique(outs))))
-   est<-median(outs)
+   est<-median(out)
    b<-qconcordant((1-conf)/2,n)
 #  message(b)
    ci<-outs[c(b,n*(n-1)/2+1-b)]

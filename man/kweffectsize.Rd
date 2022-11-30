@@ -7,7 +7,7 @@
 kweffectsize(
   totsamp,
   shifts,
-  distname = c("normal", "logistic"),
+  distname = c("normal", "logistic", "cauchy"),
   targetpower = 0.8,
   proportions = rep(1, length(shifts))/length(shifts),
   level = 0.05
@@ -37,5 +37,8 @@ using a chi-square approximation under the null, and a non-central chi-square ap
 The standard noncentral chi-square power formula, or Monte Carlo, is used.
 }
 \examples{
-kwpower(rep(10,3),c(0,1,2),"normal")
+#Calculate the effecct size necessary to have the desired power .8 for a test
+#with the level .5 with sample size 60, group centers 0, 1, and 2, 
+#normally distributed observations, evenly split among the three groups.
+kweffectsize(60,c(0,1,2),"normal")
 }
