@@ -257,10 +257,11 @@ implicit none
 ! Permute group memberships, perhaps with blocking.
 ! Report counts of permutations, and those with statistic exceeding
 ! p-value.
+     integer, parameter:: i8=selected_int_kind(15)
      integer nb
      integer n,ngrp,grpi(n),be(nb),npprt
      integer i
-     integer(kind=8) ms(2),rt,cnt(2)
+     integer(kind=i8) ms(2),rt,cnt(2)
      double precision x(n),aovn,aov,aov2,aovo,tot,remt,pv
 !    character*20 fmt
      logical first
@@ -308,7 +309,8 @@ implicit none
 
      subroutine betatestf(n,x,y,pval)
 implicit none
-     integer (kind=8) count(2),npprt
+     integer, parameter:: i8=selected_int_kind(15)
+     integer (kind=i8) count(2),npprt
      integer,allocatable,dimension(:)::perm,be
 !    character*15 fmt
      integer n,i,b

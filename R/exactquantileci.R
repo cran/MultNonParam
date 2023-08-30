@@ -19,7 +19,7 @@ exactquantileci<-function(xvec,tau=.5,alpha=0.05,md=0){
       cis[1,j]<-if(ii>=1) xvec[ii] else -Inf
       ii<-n+1-qbinom(alpha/2,n,1-tau[j])
       cis[2,j]<-if(ii<=n) xvec[ii] else Inf
-      pvals[ii]<-2*min(c(pbinom(tt,n,tau), pbinom(n+1-tt,n,1-tau)))
+      pvals[j]<-2*min(c(pbinom(tt,n,tau), pbinom(n+1-tt,n,1-tau)))
    }
    return(list(cis=cis,pvals=pvals))
 }

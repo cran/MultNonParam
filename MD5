@@ -1,4 +1,4 @@
-154fe82451789382c1c97b7458a50287 *DESCRIPTION
+97f4de9156383735b076d3f83004f18f *DESCRIPTION
 bbaff901edd5f20426dd3fbc5b180324 *NAMESPACE
 51fa811ae4cda7e4d4508a092d99a7aa *R/MultNonParam.R
 3cc5ac65b0966b8be7105cee7492a723 *R/aov.P.R
@@ -7,7 +7,7 @@ b858e3930a2767ac8860e636f9720d62 *R/dconcordant.R
 4187732ba923e1096c207b1df6f7648a *R/dmannwhitney.R
 ae88264ccfe70954c7d760af94ce7160 *R/eactquantileci.R
 b1aab725b0e02b3ca5621c8e782e3307 *R/ecdfcis.R
-3a748269351f769de9a255b5c3c74384 *R/exactquantileci.R
+6aaab47fd6a33289a6faf0ec05e9e8f7 *R/exactquantileci.R
 4d0dba9b13d1d7622f6d5ef9dc5d7f59 *R/genscorestat.R
 30430e7766f10a9387a27db6e014b925 *R/higgins.fisher.kruskal.test.R
 1814377b40b7cc8aa12cbbbf236873a8 *R/kweffectsize.R
@@ -87,7 +87,7 @@ cdcaffeb36b4e90e1fdd265e894b2640 *man/twosamplesurvpvs.Rd
 047ec59ba4484cebda77feee5b36e961 *man/twosamplesurvtests.Rd
 84099199f99e2265fc83e5d1099af540 *man/util.jplot.Rd
 2a6f9e9e044a78154d3cfda5936d6f48 *src/Makevars
-33e27778bd9d677d93bcd0ec4fa8ba79 *src/aovp.f90
+2806b400a1bae940a3ef31ee9a314031 *src/aovp.f90
 57bf4303d0e83c7af6178f2e6ad1a607 *src/dwildings.f90
 cac4919d4fb4ba0848ebcad293af9056 *src/init.c
 df475b8425e340e99e09a83431853905 *src/initperm.f90
@@ -97,4 +97,4 @@ df475b8425e340e99e09a83431853905 *src/initperm.f90
 40b9318f2f93fd05d1261373d94a8c02 *src/signtestperm.f90
 ae066c5e7d0e3a0615723c2774c62773 *src/tskmsurv.f90
 7f0aad0320b0c9cd893fa8a96cf6e7b6 *src/tsksurvpv.f90
-f338627296f1d4207a2cba19fcef411e *src/ufcn.f90
+cffffa9c938f337efe309d273d18e8f3 *src/ufcn.f90

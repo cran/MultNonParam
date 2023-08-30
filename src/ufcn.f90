@@ -1,8 +1,9 @@
      module uucache
+     integer, parameter:: j8=selected_int_kind(15)
      integer,dimension(:),allocatable,save::nnvec
-     integer (kind=8) ,dimension(:),allocatable,save ::uuvec
+     integer (kind=j8) ,dimension(:),allocatable,save ::uuvec
      integer,save:: initnn
-     integer(kind=8),save,dimension(:),allocatable::nfac
+     integer(kind=j8),save,dimension(:),allocatable::nfac
      logical,save::ccdf
      end module
      subroutine initmod(nn,cdf)
@@ -34,9 +35,10 @@ implicit none
      recursive function uu(nn,ss,cdf) result(newu)
 use uucache
 implicit none
+     integer, parameter:: i8=selected_int_kind(15)
      logical cdf
      integer nn,ss,ii
-     integer(kind=8) newu,pc,pullcache
+     integer(kind=i8) newu,pc,pullcache
      logical,save::init=.false.
      pc=-2
      if(init.and.(ccdf.neqv.cdf)) init=.false.
@@ -82,7 +84,8 @@ implicit none
      subroutine putcache(nn,ss,val)
 use uucache
 implicit none
-     integer (kind=8) val
+     integer, parameter:: i8=selected_int_kind(15)
+     integer (kind=i8) val
      integer nn,ss
 !    write(6,*) "Putting ",val," into slot ",nnvec(nn)+ss
      uuvec(nnvec(nn)+ss)=val
@@ -91,8 +94,9 @@ implicit none
      function pullcache(nn,ss,cdf)
 use uucache
 implicit none
+     integer, parameter:: i8=selected_int_kind(15)
      integer nn,ss,ii
-     integer(kind=8) pullcache
+     integer(kind=i8) pullcache
      logical cdf
      ii=0
 !    write(6,*) "nnvec",(nnvec(ii),ii=1,initnn),"nn=",nn,"ss=",ss
@@ -114,9 +118,10 @@ implicit none
      end
      subroutine dconcordant(ss,nn,dc)
 implicit none
+     integer, parameter:: i8=selected_int_kind(15)
      integer ss,nn
      double precision dc
-     integer(kind=8) uu,dd
+     integer(kind=i8) uu,dd
      integer ii
      dd=1
      do ii=2,nn
@@ -127,9 +132,10 @@ implicit none
      end
      subroutine pconcordant(ss,nn,dc)
 implicit none
+     integer, parameter:: i8=selected_int_kind(15)
      integer ss,nn
      double precision dc
-     integer(kind=8) uu,dd
+     integer(kind=i8) uu,dd
      integer ii
      dd=1
      do ii=2,nn
@@ -141,9 +147,10 @@ implicit none
      subroutine qconcordant(qq,nn,ss)
 ! ss is output
 implicit none
+     integer, parameter:: i8=selected_int_kind(15)
      integer ss,nn,ii
      double precision qq
-     integer(kind=8) cc,nfac,pp,uu
+     integer(kind=i8) cc,nfac,pp,uu
      nfac=1
      do ii=2,nn
         nfac=nfac*ii
